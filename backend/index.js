@@ -1,7 +1,7 @@
 
 const express = require('express')
 const app = express()
-const port = 4000
+const port = 5000
 const connectToDatabase= require('./db');
 connectToDatabase();
 
@@ -23,6 +23,17 @@ app.use('/api',require("./routes/LoginUsers"))
 app.use('/api',require("./routes/DisplayData"))
 app.use('/api',require("./routes/OrderData"))
 app.use('/api',require("./routes/MyOrderData"))
+
+
+if (process.env.NODE_ENV==="production"){
+  const path=require("path");
+  app.get('/',(req,res)=>{
+    app.use(express.static(path.resolve(__dirname,'client','build')));
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+  })
+}
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

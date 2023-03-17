@@ -11,7 +11,7 @@ export default function Home() {
   const [searchItem, setSearchItem] = useState('');
   useEffect(() => {
     const loadData = async () => {
-      const response = fetch("http://localhost:4000/api/displaydata", {
+      const response = fetch("http://localhost:5000/api/displaydata", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

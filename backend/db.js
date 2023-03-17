@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const mongoURI = process.env.DATA_BASE;
+const {MONGOURI} = require("./config/keys")
 
 async function connectToDatabase() {
   try {
-    await mongoose.connect(mongoURI, {
+    await mongoose.connect(MONGOURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
